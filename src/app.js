@@ -4,10 +4,18 @@ console.log('App.js is running!');
 const app = {
     title: 'Indecision App',
     subtitle: 'Machine learning rocks!',
-    options: [
-        'One',
-        'Two'
-    ]
+    options: []
+};
+
+const onFormSubmit = (e) => {
+    e.preventDefault();
+
+    const option = e.target.elements.option.value;
+
+    if(option) {
+        app.options.push(option);
+        e.target.elements.option.value = '';
+    }
 };
 
 const template = (
@@ -15,39 +23,18 @@ const template = (
         <h1>{app.title}</h1> 
         {app.subtitle && <p>{app.subtitle}</p>}
         <p>{(app.options && app.options.length > 0) ? 'Here are your options' : 'No options'}</p>
+        <p>{app.options.length}</p>
         <ol>
             <li>Item One</li>
             <li>Item Two</li>
         </ol>
+        <form onSubmit={onFormSubmit}>
+            <input type='text' name='option'/>
+            <button>Add Option</button>
+        </form>
     </div>
 );
 
-const addOne = () => {
-    count++;
-    renderCounterApp();
-};
-const subtractOne = () => {
-    count--;
-    renderCounterApp();
-};
-const reset = () => {
-    count = 0;
-    renderCounterApp();
-};
+const appRoot = document.getElementById("app");
+ReactDOM.render(template, appRoot);
 
-const appRoot = document.getElementById('app');
-
-const renderCounterApp = () => {
-    const templateTwo = (
-        <div>
-            <h1>Count: {count}</h1>
-            <button onClick={addOne}>+1</button>
-            <button onClick={subtractOne}>-1</button>
-            <button onClick={reset}>Reset</button>
-        </div>
-    );
-
-    ReactDOM.render(templateTwo, appRoot);
-};
-
-renderCounterApp();
