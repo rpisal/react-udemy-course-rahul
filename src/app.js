@@ -4,7 +4,7 @@ console.log('App.js is running!');
 const app = {
     title: 'Indecision App',
     subtitle: 'Machine learning rocks!',
-    options: []
+    options: ['O1', 'O2']
 };
 
 const onFormSubmit = (e) => {
@@ -36,8 +36,11 @@ const render = () => {
             <p>{app.options.length}</p>
             <button onClick={onRemoveAll}>Remove All</button>
             <ol>
-                <li>Item One</li>
-                <li>Item Two</li>
+                {
+                    app.options.map((option) => {
+                        return <li key={option}>{option}</li>;
+                    })
+                }
             </ol>
             <form onSubmit={onFormSubmit}>
                 <input type='text' name='option'/>
