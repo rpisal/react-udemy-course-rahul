@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = props => (
+const Header = (props) => (
   <div className="header">
     <div className="container">
       <h1 className="header__title">{props.title}</h1>
@@ -10,7 +10,7 @@ const Header = props => (
 );
 
 Header.defaultProps = {
-    title: 'Indecision'
+  title: 'Indecision'
 };
 
 export default Header;
